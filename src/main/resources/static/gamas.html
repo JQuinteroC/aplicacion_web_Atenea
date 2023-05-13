@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Funciones Gama</title>
+    <meta name="description" content="">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <base href="/">
+    <link rel='stylesheet' type='text/css' href='/webjars/bootstrap/css/bootstrap.min.css' />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/gamaFunctions.js"></script>
+</head>
+
+<body>
+    <h1>Grupo G1 Desarrollo de Software</h1>
+    <h2>Tabla de gamas</h2>
+
+    <div class="input-group mb-3" id="datos">
+        <span class="input-group-text">ID</span>
+        <input readonly type="text" class="form-control" id="id" placeholder="Id">
+
+        <span class="input-group-text">Nombre</span>
+        <input type="text" maxlength="45" class="form-control" id="name" placeholder="Nombre">
+
+        <div class="input-group">
+            <span class="input-group-text">Descripción</span>
+            <textarea maxlength="250" class="form-control" id="description"
+                placeholder="Descripción"></textarea>
+        </div>
+    </div>
+
+    <div class="position-relative">
+        <br>
+        <div class="position-absolute top-50 start-50 translate-middle hstack gap-3">
+            <a class="btn btn-secondary" href="./index.html">Regresar</a>
+            <button type="button" class="btn btn-primary" onclick="addGama()">Adicionar</button>
+            <button type="button" class="btn btn-primary" onclick="listGama()">Listar</button>
+            <button type="button" class="btn btn-primary" onclick="modGama()">Modificar</button>
+        </div>
+        <br>
+    </div>
+
+    <div id="resultado">
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Funciones Reservations</title>
+    <meta name="description" content="">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <base href="/">
+    <link rel='stylesheet' type='text/css' href='/webjars/bootstrap/css/bootstrap.min.css' />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/reservationsFunctions.js"></script>
+</head>
+
+<body>
+    <h1>Grupo G1 Desarrollo de Software</h1>
+    <h2>Tabla de Reservas</h2>
+
+    <div class="input-group mb-3" id="datos">
+        <span class="input-group-text">ID</span>
+        <input readonly type="text" class="form-control" id="id" placeholder="Id">
+
+        <span class="input-group-text">Fecha inicio</span>
+        <input disabled type="date" class="form-control" id="startDate" name="startDate" onchange="changesDates()">
+
+        <span class="input-group-text">Fecha entrega</span>
+        <input type="date" class="form-control" id="devolutionDate" name="devolutionDate" onchange="changesDates()">
+    </div>
+
+    <div class="input-group mb-3" id="datos">
+        <span class="input-group-text">Cliente</span>
+        <select class="form-select" id="client">
+            <option selected disabled>--</option>
+        </select>
+
+        <span class="input-group-text">Carro</span>
+        <select class="form-select" id="car">
+            <option selected disabled>--</option>
+        </select>
+
+        <span class="input-group-text">Estado</span>
+        <select disabled class="form-select" id="status">
+            <option value="created">Creado</option>
+            <option value="programmed">Programado</option>
+            <option value="canceled">Cancelado</option>
+            <option value="realized">Realizado</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3" hidden id="calificar">
+        
+        <span class="input-group-text">Score</span>
+        <input type="number" class="form-control" id="score" min="0" max="5">
+        <button class="btn btn-outline-success" type="button" id="save" onclick="saveScore()">Enviar calificación</button>
+        <button hidden class="btn btn-outline-success" type="button" id="update" onclick="updateScore()">Actualizar calificación</button>
+        <div class="input-group">
+            <span class="input-group-text">Mensaje</span>
+            <textarea maxlength="250" class="form-control" id="message" placeholder="Mensaje"></textarea>
+        </div>
+        
+    </div>
+
+    <div class="position-relative">
+        <br>
+        <div class="position-absolute top-50 start-50 translate-middle hstack gap-3">
+            <a class="btn btn-secondary" href="./index.html">Regresar</a>
+            <button type="button" class="btn btn-primary" onclick="addReservation()">Adicionar</button>
+            <button type="button" class="btn btn-primary" onclick="listReservation()">Listar</button>
+            <button type="button" class="btn btn-primary" onclick="modReservation()">Modificar</button>
+        </div>
+        <br>
+    </div>
+
+    <div id="resultado">
+
+    </div>
+</body>
+
+</html>
