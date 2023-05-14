@@ -15,10 +15,17 @@
 
 <body>
     <h1>TODOS A LA U!</h1>
-    <div class="container">
-        <h2>Grupo G1 Desarrollo de Software</h2>
-        <br>
-        <h3>José Luis Quintero Cañizalez</h3>
+    <h2>Grupo G1 Desarrollo de Software</h2>
+    <br>
+    <h3>José Luis Quintero Cañizalez</h3>
+
+    <div class="container unauthenticated">
+        Para iniciar sesión con GitHub:
+        <a href="/oauth2/authorization/github">Haz click aquí</a>
+    </div>
+
+    <div class="container authenticated" style="display: none;">
+        Autenticado como: <span id="user"></span>
         <div class="hstack gap-3">
             <a class="btn btn-primary" href="./cars.html">Carros</a>
             <a class="btn btn-primary" href="./clients.html">Clientes</a>
@@ -31,4 +38,11 @@
     </div>
 </body>
 
+<script type="text/javascript">
+    $.get("/user", function(data) {
+        $("#user").html(data.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+</script>
 </html>

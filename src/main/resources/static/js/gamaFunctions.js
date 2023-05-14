@@ -61,11 +61,13 @@ function drawTableGamas(items) {
     myTable = myTable + '<tbody style="vertical-align: middle;">';
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
+        item.cars.length = item.cars.length == 0 ? 1 : item.cars.length;
+
         myTable = myTable + '<tr>';
         myTable = myTable + `<td hidden rowspan="${item.cars.length}"> ${item.idGama} </td>`;
         myTable = myTable + `<td rowspan="${item.cars.length}"> ${item.name} </td>`;
         myTable = myTable + `<td rowspan="${item.cars.length}"> ${item.description} </td>`;
-        if (item.cars.length > 0)
+        if (item.cars.length > 1)
             myTable = myTable + `<td> ${item.cars[0].name} - ${item.cars[0].brand} </td>`;
         else
             myTable = myTable + `<td> No hay carros </td>`;
@@ -73,12 +75,12 @@ function drawTableGamas(items) {
         myTable = myTable + `<button type="button" class="btn btn-primary" onclick='getOne(${item.idGama})' style="margin: 0rem 1rem;"> Editar </button> </td>`;
         myTable = myTable + '</tr>';
 
-        myTable = myTable + '<tr>';
         for (let j = 1; j < item.cars.length; j++) {
+            myTable = myTable + '<tr>';
             const car = item.cars[j];
             myTable = myTable + `<td> ${car.name} - ${car.brand} </td>`;
+            myTable = myTable + '</tr>';
         }
-        myTable = myTable + '</tr>';
 
     }
     myTable = myTable + '</tbody>';
