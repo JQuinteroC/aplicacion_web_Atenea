@@ -54,12 +54,25 @@ function config() {
 }
 
 function addReservation() {
+    if (!valEmptyReservation()) {
+        return;
+    }
+
+    let startDate = $("#startDate").val();
+    let devolutionDate = $("#devolutionDate").val();
+    let client = { idClient: parseInt($("#client").val()) };
+    let car = { idCar: parseInt($("#car").val()) };
+
+    if (!startDate || !devolutionDate || !client || !car) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
 
     let myData = {
-        startDate: $("#startDate").val(),
-        devolutionDate: $("#devolutionDate").val(),
-        client: { idClient: parseInt($("#client").val()) },
-        car: { idCar: parseInt($("#car").val()) }
+        startDate: startDate,
+        devolutionDate: devolutionDate,
+        client: client,
+        car: car
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -193,13 +206,29 @@ function screenModify(item) {
 }
 
 function modReservation() {
+    if (!valEmptyReservation()) {
+        return;
+    }
+
+    let idReservation = parseInt($("#id").val());
+    let startDate = $("#startDate").val();
+    let devolutionDate = $("#devolutionDate").val();
+    let client = { idClient: parseInt($("#client").val()) };
+    let car = { idCar: parseInt($("#car").val()) };
+    let status = $("#status").val();
+
+    if (!idReservation || !startDate || !devolutionDate || !client || !car || !status) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
-        idReservation: parseInt($("#id").val()),
-        startDate: $("#startDate").val(),
-        devolutionDate: $("#devolutionDate").val(),
-        client: { idClient: parseInt($("#client").val()) },
-        car: { idCar: parseInt($("#car").val()) },
-        status: $("#status").val()
+        idReservation: idReservation,
+        startDate: startDate,
+        devolutionDate: devolutionDate,
+        client: client,
+        car: car,
+        status: status
     };
 
     myData = JSON.stringify(myData);
@@ -267,10 +296,23 @@ function showScore(active) {
 }
 
 function saveScore() {
+    if (!valEmptyScore()) {
+        return;
+    }
+
+    let reservation = { idReservation: parseInt($("#id").val()) };
+    let stars = $("#score").val();
+    let messageText = $("#message").val();
+
+    if (!reservation || !stars || !messageText) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
-        reservation: { idReservation: parseInt($("#id").val()) },
-        stars: parseInt($("#score").val()),
-        messageText: $("#message").val()
+        reservation: reservation,
+        stars: parseInt(stars),
+        messageText: messageText
     };
 
     myData = JSON.stringify(myData);
@@ -291,11 +333,24 @@ function saveScore() {
 }
 
 function updateScore() {
+    if (!valEmptyScore()) {
+        return;
+    }
+
+    let stars = $("#score").val();
+    let messageText = $("#message").val();
+    let reservation = { idReservation: parseInt($("#id").val()) };
+
+    if (!idScore || !stars || !messageText || !reservation) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
         idScore: idScore,
-        stars: parseInt($("#score").val()),
-        messageText: $("#message").val(),
-        reservation: { idReservation: parseInt($("#id").val()) },
+        stars: parseInt(stars),
+        messageText: messageText,
+        reservation: reservation
     };
 
     myData = JSON.stringify(myData);
@@ -323,4 +378,20 @@ function editFields(active) {
 function changesDates() {
     $("#devolutionDate").attr("min", $("#startDate").val());
     $("#startDate").attr("max", $("#devolutionDate").val());
+}
+
+function valEmptyReservation() {
+    if ($("#startDate").val() == "" || $("#devolutionDate").val() == "" || $("#client").val() == null || $("#car").val() == null) {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
+}
+
+function valEmptyScore() {
+    if ($("#score").val() == "" || $("#message").val() == "") {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
 }

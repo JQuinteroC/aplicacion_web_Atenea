@@ -42,10 +42,23 @@ function drawComboClient(items) {
 }
 
 function addMessage() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let messageText = document.getElementById("message").value;
+    let client = { idClient: parseInt($("#client").val()) };
+    let car = { idCar: parseInt($("#car").val()) };
+
+    if (!messageText || !client || !car) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
-        messageText: $("#message").val(),
-        client: { idClient: parseInt($("#client").val()) },
-        car: { idCar: parseInt($("#car").val()) }
+        messageText: messageText,
+        client: client,
+        car: car
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -146,11 +159,25 @@ function screenModify(item) {
 }
 
 function modMessage() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let idMessage = document.getElementById("id").value;
+    let messageText = document.getElementById("message").value;
+    let client = { idClient: parseInt($("#client").val()) };
+    let car = { idCar: parseInt($("#car").val()) };
+
+    if (!idMessage || !messageText || !client || !car) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
-        idMessage: $("#id").val(),
-        messageText: $("#message").val(),
-        client: { idClient: parseInt($("#client").val()) },
-        car: { idCar: parseInt($("#car").val()) }
+        idMessage: idMessage,
+        messageText: messageText,
+        client: client,
+        car: car
     };
 
     myData = JSON.stringify(myData);
@@ -182,4 +209,12 @@ function delMessage(idMessage) {
             alert("No se pudo eliminar el registro");
         }
     });
+}
+
+function valEmpty() {
+    if ($("#message").val() == "" || $("#client").val() == null || $("#car").val() == null) {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
 }

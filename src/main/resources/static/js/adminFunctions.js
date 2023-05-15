@@ -1,10 +1,23 @@
 const URL_BASE = "http://localhost:8080/api/Admin";
 
 function addAdmin() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let name = document.getElementById("name").value;
+
+    if (!email || !password || !name) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        email: $("#email").val(),
-        password: $("#password").val(),
-        name: $("#name").val()
+        email: email,
+        password: password,
+        name: name
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -103,11 +116,25 @@ function screenModify(item) {
 }
 
 function modAdmin() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let idAdmin = document.getElementById("id").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let name = document.getElementById("name").value;
+
+    if (!idAdmin || !email || !password || !name) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        idAdmin: $("#id").val(),
-        email: $("#email").val(),
-        password: $("#password").val(),
-        name: $("#name").val()
+        idAdmin: idAdmin,
+        email: email,
+        password: password,
+        name: name
     };
 
     myData = JSON.stringify(myData);
@@ -139,4 +166,12 @@ function delAdmin(idAdmin) {
             alert("No se pudo eliminar el registro");
         }
     });
+}
+
+function valEmpty() {
+    if ($('#email').val() == "" || $('#password').val() == "" || $('#name').val() == "") {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
 }

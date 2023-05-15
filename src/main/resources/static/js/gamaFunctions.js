@@ -1,9 +1,21 @@
 const URL_BASE = "http://localhost:8080/api/Gama";
 
 function addGama() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let name = document.getElementById("name").value;
+    let description = document.getElementById("description").value;
+
+    if (!name || !description) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        name: $("#name").val(),
-        description: $("#description").val(),
+        name: name,
+        description: description,
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -61,13 +73,14 @@ function drawTableGamas(items) {
     myTable = myTable + '<tbody style="vertical-align: middle;">';
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
+        let tieneCarro = item.cars.length > 0;
         item.cars.length = item.cars.length == 0 ? 1 : item.cars.length;
 
         myTable = myTable + '<tr>';
         myTable = myTable + `<td hidden rowspan="${item.cars.length}"> ${item.idGama} </td>`;
         myTable = myTable + `<td rowspan="${item.cars.length}"> ${item.name} </td>`;
         myTable = myTable + `<td rowspan="${item.cars.length}"> ${item.description} </td>`;
-        if (item.cars.length > 1)
+        if (tieneCarro)
             myTable = myTable + `<td> ${item.cars[0].name} - ${item.cars[0].brand} </td>`;
         else
             myTable = myTable + `<td> No hay carros </td>`;
@@ -113,10 +126,23 @@ function screenModify(item) {
 }
 
 function modGama() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let idGama = $("#id").val();
+    let name = $("#name").val();
+    let description = $("#description").val();
+
+    if (!idGama || !name || !description) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        idGama: $("#id").val(),
-        name: $("#name").val(),
-        description: $("#description").val(),
+        idGama: idGama,
+        name: name,
+        description: description,
     };
 
     myData = JSON.stringify(myData);
@@ -148,4 +174,15 @@ function delGama(idGama) {
             alert("No se pudo eliminar el registro");
         }
     });
+}
+
+function valEmpty() {
+    let name = $("#name").val();
+    let description = $("#description").val();
+
+    if (name == "" || description == "") {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
 }

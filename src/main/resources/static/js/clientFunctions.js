@@ -1,11 +1,25 @@
 const URL_BASE = "http://localhost:8080/api/Client";
 
 function addClient() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let age = document.getElementById("age").value;
+    let name = document.getElementById("name").value;
+
+    if (!email || !password || !age || !name) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        email: $("#email").val(),
-        password: $("#password").val(),
-        age: parseInt($("#age").val()),
-        name: $("#name").val()
+        email: email,
+        password: password,
+        age: parseInt(age),
+        name: name
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -108,12 +122,27 @@ function screenModify(item) {
 }
 
 function modClient() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let idClient = document.getElementById("id").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let age = document.getElementById("age").value;
+    let name = document.getElementById("name").value;
+
+    if (!idClient || !email || !password || !age || !name) {
+        alert("Por favor, complete todos los campos");
+        return;
+    }
+
     let myData = {
-        idClient: $("#id").val(),
-        email: $("#email").val(),
-        password: $("#password").val(),
-        age: parseInt($("#age").val()),
-        name: $("#name").val()
+        idClient: idClient,
+        email: email,
+        password: password,
+        age: parseInt(age),
+        name: name
     };
 
     myData = JSON.stringify(myData);
@@ -145,4 +174,12 @@ function delClient(idClient) {
             alert("No se pudo eliminar el registro");
         }
     });
+}
+
+function valEmpty() {
+    if ($('#email').val() == "" || $('#password').val() == "" || $('#age').val() == "" || $('#name').val() == "") {
+        alert("No se permiten campos vacios");
+        return false;
+    }
+    return true;
 }

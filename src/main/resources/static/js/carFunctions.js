@@ -1,14 +1,14 @@
 const URL_BASE = "http://localhost:8080/api/Car";
 
-loadCar();
+loadGama();
 
-function loadCar() {
+function loadGama() {
     $.ajax({
         url: "http://localhost:8080/api/Gama/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {
-            drawComboCar(resultado);
+            drawComboGama(resultado);
         },
         error: function (xhr, status) {
             alert("No se pudo consultar la tabla");
@@ -16,7 +16,7 @@ function loadCar() {
     });
 }
 
-function drawComboCar(items) {
+function drawComboGama(items) {
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         let myOption = `<option value="${item.idGama}"> ${item.name} </option>`;
@@ -25,12 +25,27 @@ function drawComboCar(items) {
 }
 
 function addCar() {
+    if(!valEmpty()){
+        return;
+    }
+
+    let name = document.getElementById("name").value;
+    let brand = document.getElementById("brand").value;
+    let year = document.getElementById("year").value;
+    let description = document.getElementById("description").value;
+    let gama = document.getElementById("gama").value;
+
+    if(!name || !brand || !year || !description || !gama){
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     let myData = {
-        name: $("#name").val(),
-        brand: $("#brand").val(),
-        year: parseInt($("#year").val()),
-        description: $("#description").val(),
-        gama: { idGama: parseInt($("#gama").val()) }
+        name: name,
+        brand: brand,
+        year: year,
+        description: description,
+        gama: { idGama: parseInt(gama)}
     };
 
     let dataToSend = JSON.stringify(myData);
@@ -138,14 +153,30 @@ function screenModify(item) {
     $("#resultado").empty();
 }
 
-function modMessage() {
+function modCar() {
+    if (!valEmpty()) {
+        return;
+    }
+
+    let idCar = $("#id").val();
+    let name = $("#name").val();
+    let brand = $("#brand").val();
+    let year = parseInt($("#year").val());
+    let description = $("#description").val();
+    let gama = { idGama: parseInt($("#gama").val()) };
+    
+    if (!idCar || !name || !brand || !year || !description || !gama) {
+        alert("Debe ingresar todos los datos");
+        return;
+    }
+
     let myData = {
-        idCar: $("#id").val(),
-        name: $("#name").val(),
-        brand: $("#brand").val(),
-        year: parseInt($("#year").val()),
-        description: $("#description").val(),
-        gama: { idGama: parseInt($("#gama").val()) }
+        idCar: idCar,
+        name: name,
+        brand: brand,
+        year: year,
+        description: description,
+        gama: gama
     };
 
     myData = JSON.stringify(myData);
@@ -165,7 +196,7 @@ function modMessage() {
     });
 }
 
-function delMessage(idCar) {
+function delCar(idCar) {
     $.ajax({
         url: URL_BASE + "/" + idCar,
         type: "DELETE",
@@ -177,4 +208,12 @@ function delMessage(idCar) {
             alert("No se pudo eliminar el registro");
         }
     });
+}
+
+function valEmpty() {
+    if ($('#brand').val() == "" || $('#name').val() == "" || $('#year').val() == "" || $('#description').val() == "" || $('#gama').val() == null) {
+        alert("Todos los campos son obligatorios");
+        return false;
+    }
+    return true;
 }

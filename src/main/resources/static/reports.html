@@ -11,40 +11,33 @@
     <link rel='stylesheet' type='text/css' href='/webjars/bootstrap/css/bootstrap.min.css' />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/clientFunctions.js"></script>
+    <script type="text/javascript" src="./js/reportFunctions.js"></script>
 </head>
 
 <body>
     <h1>Grupo G1 Desarrollo de Software</h1>
     <h2>Reportes</h2>
 
-    <div class="input-group mb-3" id="datos">
-        <span class="input-group-text sm">ID</span>
-        <input readonly type="text" class="form-control col-2" id="id" placeholder="Id">
-
-        <span class="input-group-text">Correo</span>
-        <input type="email" maxlength="45" class="form-control" id="email" placeholder="Correo">
-
-        <span class="input-group-text">Contraseña</span>
-        <input type="password" maxlength="45" class="form-control" id="password" placeholder="Contraseña">
-
-        <span class="input-group-text">Edad</span>
-        <input type="number" max="999" min="0" class="form-control" id="age" placeholder="Edad">
-        <div class="input-group">
-            <span class="input-group-text">Nombre</span>
-            <input type="text" maxlength="250" class="form-control" id="name" placeholder="Nombre">
-        </div>
-    </div>
-
     <div class="position-relative">
         <br>
         <div class="position-absolute top-50 start-50 translate-middle hstack gap-3">
             <a class="btn btn-secondary" href="./index.html">Regresar</a>
-            <button type="button" class="btn btn-primary" onclick="addClient()">Adicionar</button>
-            <button type="button" class="btn btn-primary" onclick="listClient()">Listar</button>
-            <button type="button" class="btn btn-primary" onclick="modClient()">Modificar</button>
+            <button type="button" class="btn btn-primary" onclick="countReservations()">Conteo de Reservas</button>
+            <button type="button" class="btn btn-primary" onclick="countResCanc()">Conteo de Reservas completadas vs canceladas</button>
+            <button type="button" class="btn btn-primary" onclick="clients()">Top mejores clientes</button>
         </div>
         <br>
+    </div>
+
+    <br>
+    <div class="input-group mb-3" id="datos">
+        <span class="input-group-text">Fecha inicio</span>
+        <input type="date" class="form-control" id="startDate" name="startDate" onchange="changesDates()">
+        
+        <span class="input-group-text">Fecha entrega</span>
+        <input type="date" class="form-control" id="devolutionDate" name="devolutionDate" onchange="changesDates()">
+
+        <button class="btn btn-outline-success" type="button" id="save" onclick="countRes()">Consultar conteo</button>
     </div>
 
     <div id="resultado">
