@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Car")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE })
 public class CarController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class CarController {
     public Car get(@PathVariable Integer idCar) {
         return carsService.getCar(idCar);
     }
-    
+
     @PutMapping("/update")
     @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
     public void update(@RequestBody Car car) {
