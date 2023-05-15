@@ -1,11 +1,11 @@
-const URL_BASE = "http://localhost:8080/api/Message";
+const URL_BASE = "http://129.213.117.208:8080/api/Message";
 
 loadCar();
 loadClient();
 
 function loadCar() {
     $.ajax({
-        url: "http://localhost:8080/api/Car/all",
+        url: "http://129.213.117.208:8080/api/Car/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {
@@ -16,7 +16,7 @@ function loadCar() {
 
 function loadClient() {
     $.ajax({
-        url: "http://localhost:8080/api/Client/all",
+        url: "http://129.213.117.208:8080/api/Client/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {

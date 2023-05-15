@@ -1,4 +1,4 @@
-const URL_BASE = "http://localhost:8080/api/Reservation";
+const URL_BASE = "http://129.213.117.208:8080/api/Reservation";
 var fechaFormateada
 var idScore
 
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function loadCar() {
     $.ajax({
-        url: "http://localhost:8080/api/Car/all",
+        url: "http://129.213.117.208:8080/api/Car/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {
@@ -21,7 +21,7 @@ function loadCar() {
 
 function loadClient() {
     $.ajax({
-        url: "http://localhost:8080/api/Client/all",
+        url: "http://129.213.117.208:8080/api/Client/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {
@@ -318,7 +318,7 @@ function saveScore() {
     myData = JSON.stringify(myData);
 
     $.ajax({
-        url: "http://localhost:8080/api/Score/save",
+        url: "http://129.213.117.208:8080/api/Score/save",
         type: "POST",
         data: myData,
         contentType: "application/JSON",
@@ -356,7 +356,7 @@ function updateScore() {
     myData = JSON.stringify(myData);
 
     $.ajax({
-        url: "http://localhost:8080/api/Score/update",
+        url: "http://129.213.117.208:8080/api/Score/update",
         type: "PUT",
         data: myData,
         contentType: "application/JSON",
