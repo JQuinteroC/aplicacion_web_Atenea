@@ -1,4 +1,4 @@
-const URL_BASE = "http://129.213.117.208:8080/api/Client";
+const URL_BASE = "http://localhost:8080/api/Client";
 
 function addClient() {
     if (!valEmpty()) {

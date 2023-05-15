@@ -14,3 +14,5 @@ cd /home/opc/aplicacion_web_Atenea/target
 
 sudo java -jar -Dspring.profiles.active=prod grupog1-0.0.1-SNAPSHOT.jar
 ```
+
+José Luis Quintero Cañizalez

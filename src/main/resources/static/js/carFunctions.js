@@ -1,10 +1,10 @@
-const URL_BASE = "http://129.213.117.208:8080/api/Car";
+const URL_BASE = "http://localhost:8080/api/Car";
 
 loadGama();
 
 function loadGama() {
     $.ajax({
-        url: "http://129.213.117.208:8080/api/Gama/all",
+        url: "http://localhost:8080/api/Gama/all",
         type: "GET",
         dataType: "JSON",
         success: function (resultado) {
